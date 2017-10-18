@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+
+    <appender name="stdout" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/admin/http-async/logs/async.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/admin/http-async/logs/tomcat_stdout.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %p [%t] %c{0} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="serverLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/admin/http-async/logs/server.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/admin/http-async/logs/server.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %p [%t] %c{0} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="stdout"/>
+    </root>
+
+    <logger name="com.alimusic.jettyAsync" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="serverLog" />
+    </logger>
+</configuration>
